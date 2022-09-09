@@ -1,23 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scaffold_app/main.dart';
 
-import 'signup_screen.dart';
+import 'login_screen.dart';
 
-class LogInScreen extends StatefulWidget {
-  //final VoidCallback onClickedSignUp;
-  //LogInScreen({Key? key, required this.onClickedSignUp}) : super(key: key);
-  static const routeName = 'login-screen';
+class SignUpScreen extends StatefulWidget {
+  //SignUpScreen({Key? key}) : super(key: key);
+  static const routeName = 'sign-up-screen';
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,23 +51,23 @@ class _LogInScreenState extends State<LogInScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(vertical: 15),
                       ),
-                      onPressed: signIn,
-                      child: Text('Log In'),
+                      onPressed: signUp,
+                      child: Text('Register'),
                     ),
                   ),
                   SizedBox(height: 24),
                   GestureDetector(
                     onTap: () =>
-                        Navigator.pushNamed(context, SignUpScreen.routeName),
+                        Navigator.pushNamed(context, LogInScreen.routeName),
                     child: RichText(
                         text: TextSpan(
-                            text: 'No Account? ',
+                            text: 'Have an account? ',
                             style: TextStyle(color: Colors.black),
                             children: [
                           TextSpan(
                               // recognizer: TapGestureRecognizer(),
                               //   ..onTap: widget.onClickedSignUp,
-                              text: 'Sign Up',
+                              text: 'Login',
                               style: TextStyle(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold,
@@ -86,7 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
     );
   }
 
-  Future signIn() async {
+  Future signUp() async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -94,7 +91,7 @@ class _LogInScreenState extends State<LogInScreen> {
               child: CircularProgressIndicator(),
             ));
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
