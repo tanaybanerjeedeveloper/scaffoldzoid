@@ -8,6 +8,7 @@ import 'home_page.dart';
 import './screens/login_screen.dart';
 import './screens/profile_screen.dart';
 import './screens/signup_screen.dart';
+import './screens/rate_chart.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SignUpScreen.routeName: (context) => SignUpScreen(),
         LogInScreen.routeName: (context) => LogInScreen(),
+        RateChart.routeName: (context) => RateChart(),
       },
     );
   }

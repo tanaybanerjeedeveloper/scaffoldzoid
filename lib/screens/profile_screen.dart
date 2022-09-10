@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scaffold_app/screens/rate_chart.dart';
 
 class ProfileScreen extends StatefulWidget {
   //ProfileScreen({Key? key}) : super(key: key);
@@ -188,6 +189,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       )
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RateChart.routeName);
+                    },
+                    child: Text('Rate Chart'),
                   ),
                 ),
                 SizedBox(
