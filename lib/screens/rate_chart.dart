@@ -47,6 +47,12 @@ class _RateChartState extends State<RateChart> {
                             title: Text(documentSnapshot['email']),
                             subtitle: Text(
                                 'Rate of orange per kg - ${documentSnapshot['rate']}'),
+                            trailing: IconButton(
+                                onPressed: () {
+                                  deleteDoc(documentSnapshot.id);
+                                  // documentSnapshot.delete();
+                                },
+                                icon: Icon(Icons.delete)),
                           ),
                         ),
                       );
@@ -74,5 +80,12 @@ class _RateChartState extends State<RateChart> {
         ],
       ),
     );
+  }
+
+  Future<void> deleteDoc(String id) async {
+    await _sellers.doc(id).delete();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Successfully deleted'),
+    ));
   }
 }
