@@ -240,5 +240,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       'email': email,
     };
     await docUser.set(json);
+
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Successfully added'),
+    ));
   }
 }
