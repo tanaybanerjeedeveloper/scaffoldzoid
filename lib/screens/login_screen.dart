@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scaffold_app/main.dart';
 
+import '../utils.dart';
 import 'signup_screen.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -116,6 +117,7 @@ class _LogInScreenState extends State<LogInScreen> {
         password: passwordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
+      Utils.showSnackBar(e.message);
       print(e);
     }
 
