@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -176,7 +177,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             primary: Colors.orange,
                             padding: EdgeInsets.symmetric(vertical: 15),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            createUser(
+                                about: _aboutController.text,
+                                orangeType: _orangeTypeController.text,
+                                rate: _rateController.text,
+                                email: user.email!);
+                          },
                           child: Text('Submit'),
                         ),
                       )
@@ -201,5 +208,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  Future createUser(
+      {required about,
+      required orangeType,
+      required rate,
+      required email}) async {
+    final docUser = FirebaseFirestore.instance.collection('sellers').doc();
+    final json = {
+      'about': about,
+      'orange': orangeType,
+      'rate': rate,
+      'email': email,
+    };
+    await docUser.set(json);
   }
 }
