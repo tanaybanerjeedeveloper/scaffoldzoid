@@ -38,6 +38,11 @@ class _LogInScreenState extends State<LogInScreen> {
                     // SizedBox(
                     //   height: 100,
                     // ),
+                    Text(
+                      'SCAFFOLDZOID INC',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
                     TextFormField(
                       controller: emailController,
                       decoration: InputDecoration(labelText: 'Email'),
